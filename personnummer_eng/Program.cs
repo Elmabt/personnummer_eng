@@ -1,0 +1,61 @@
+﻿using System;
+using System.ComponentModel;
+
+namespace personnummer_eng
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //the program will ask for a 12 digit social security number
+            Console.WriteLine("enter a 12-digit social security number: ");
+            var personnummer = Console.ReadLine();
+
+            //this function should check that it is a 12 digit number and not an 11 or 13 digit number
+            // || = The result of x || y is true if either x or y is evaluated to be true. Otherwise the result is false
+            if (personnummer.Length < 12 || personnummer.Length > 12)
+            {
+                //if the social security number is not 12 digits, "opps the social security number must have 12 digits"
+                Console.WriteLine(" opps the social security number must have 12 digits");
+                Console.ReadLine();
+                return;
+            }
+            //this function is to see if the date is correct, ie the first 8 digits
+            var date = personnummer.Substring(0, 8);
+            var datumanalys = DateTime.TryParse(date.Insert(7, "-").Insert(4, "-"), out var datumcon);
+            //if the date is incorrect
+            if (!datumanalys)
+            {
+                //if the date is wrong this will come up "the date is wrong"
+                Console.WriteLine("the date is incorrect");
+                Console.ReadLine();
+                return;
+            }
+            //the function to see if the year is between 1753 and 2020
+            if (datumcon.Year < 1753 || datumcon.Year > 2020)
+            {
+                Console.WriteLine("the year had to be in between 1753-2020");
+                var Year = Console.ReadLine();
+                return;
+            }
+            // This feature will be for those whether it is a woman or a man.
+            String siffras = personnummer.Substring(8, 1);
+            int siffrascon = int.Parse(siffras);
+            int result = (siffrascon % 2);
+            //if it's an odd number, it's a man
+            if (result == 1)
+            {
+                Console.WriteLine("its a male");
+            }
+            //if it's not an odd number, it's one
+            else
+            {
+                Console.WriteLine("its a woman");
+            }
+            //when the programmer has completed, this message should be up
+            Console.WriteLine("the social security number is the correct press of a random button to exit: D");
+
+
+        }
+    }
+}
