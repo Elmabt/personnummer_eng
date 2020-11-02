@@ -9,11 +9,11 @@ namespace personnummer_eng
         {
             //the program will ask for a 12 digit social security number
             Console.WriteLine("enter a 12-digit social security number: ");
-            var personnummer = Console.ReadLine();
+            var pn = Console.ReadLine();
 
             //this function should check that it is a 12 digit number and not an 11 or 13 digit number
             // || = The result of x || y is true if either x or y is evaluated to be true. Otherwise the result is false
-            if (personnummer.Length < 12 || personnummer.Length > 12)
+            if (pn.Length < 12 || pn.Length > 12)
             {
                 //if the social security number is not 12 digits, "opps the social security number must have 12 digits"
                 Console.WriteLine(" opps the social security number must have 12 digits");
@@ -21,10 +21,10 @@ namespace personnummer_eng
                 return;
             }
             //this function is to see if the date is correct, ie the first 8 digits
-            var date = personnummer.Substring(0, 8);
-            var datumanalys = DateTime.TryParse(date.Insert(7, "-").Insert(4, "-"), out var datumcon);
+            var date = pn.Substring(0, 8);
+            var datea = DateTime.TryParse(date.Insert(7, "-").Insert(4, "-"), out var datec);
             //if the date is incorrect
-            if (!datumanalys)
+            if (!datea)
             {
                 //if the date is wrong this will come up "the date is wrong"
                 Console.WriteLine("the date is incorrect");
@@ -32,14 +32,14 @@ namespace personnummer_eng
                 return;
             }
             //the function to see if the year is between 1753 and 2020
-            if (datumcon.Year < 1753 || datumcon.Year > 2020)
+            if (datec.Year < 1753 || datec.Year > 2020)
             {
                 Console.WriteLine("the year had to be in between 1753-2020");
                 var Year = Console.ReadLine();
                 return;
             }
             // This feature will be for those whether it is a woman or a man.
-            String siffras = personnummer.Substring(8, 1);
+            String siffras = pn.Substring(8, 1);
             int siffrascon = int.Parse(siffras);
             int result = (siffrascon % 2);
             //if it's an odd number, it's a man
