@@ -22,7 +22,7 @@ namespace personnummer_eng
             }
             //this function is to see if the date is correct, ie the first 8 digits
             var date = pn.Substring(0, 8);
-            var datea = DateTime.TryParse(date.Insert(7, "-").Insert(4, "-"), out var datec);
+            var datea = DateTime.TryParse(date.Insert(4, "-").Insert(7, "-"), out var datec);
             //if the date is incorrect
             if (!datea)
             {
@@ -39,19 +39,21 @@ namespace personnummer_eng
                 return;
             }
             // This feature will be for those whether it is a woman or a man.
-            String siffras = pn.Substring(8, 1);
+            String siffras = pn.Substring(8, 3);
             int siffrascon = int.Parse(siffras);
-            int result = (siffrascon % 2);
             //if it's an odd number, it's a man
-            if (result == 1)
+            if (siffrascon % 2 == 0)
             {
-                Console.WriteLine("its a male");
+                Console.WriteLine("its a female");
             }
             //if it's not an odd number, it's one
             else
             {
-                Console.WriteLine("its a woman");
+                Console.WriteLine("its a male");
             }
+            
+               
+            
             //when the programmer has completed, this message should be up
             Console.WriteLine("the social security number is the correct press of a random button to exit: D");
 
@@ -59,3 +61,4 @@ namespace personnummer_eng
         }
     }
 }
+
