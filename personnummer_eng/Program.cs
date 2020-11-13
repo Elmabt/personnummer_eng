@@ -41,10 +41,10 @@ namespace personnummer_eng
             // This feature will be for those whether it is a woman or a man.
             String siffras = pn.Substring(8, 3);
             int siffrascon = int.Parse(siffras);
-            //if it's an odd number, it's a man
+            //if it's an odd number, it's a woman
             if (siffrascon % 2 == 0)
             {
-                Console.WriteLine("its a female");
+                Console.WriteLine("its a woman");
             }
             //if it's not an odd number, it's one
             else
